@@ -22,7 +22,7 @@
                             <p>SB Admin 2 for Laravel.</p>
                             <p>Recommend to install this preset on a project that you are starting from scratch, otherwise your project's design might break.</p>
                             <p>If you found this project useful, then please consider giving it a ⭐</p>
-                            <a href="https://github.com/aleckrh/laravel-sb-admin-2" target="_blank" class="btn btn-github">
+                            <a href="https://github.com/samyboy-12/TugasPPW2024.git" target="_blank" class="btn btn-github">
                                 <i class="fab fa-github fa-fw"></i> Go to repository
                             </a>
                         </div>
