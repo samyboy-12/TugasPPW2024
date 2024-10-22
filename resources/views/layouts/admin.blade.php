@@ -177,7 +177,13 @@
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
+<<<<<<< HEAD
        
+=======
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Maintained by <a href="https://github.com/aleckrh" target="_blank">AleckRH</a>. {{ now()->year }}</span>
+>>>>>>> c8828a74c9aeee2a1e0943ccb8b04e689c542293
                 </div>
             </div>
         </footer>
