@@ -28,13 +28,14 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
-
-        Route::get('/profile', 'ProfileController@index')->name('profile');
+    Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
-
     Route::get('/about', function () {
         return view('about');
     })->name('about');
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+Route::get('/', function () {
+    return view('welcome');
 });
 
