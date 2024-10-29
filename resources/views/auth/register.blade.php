@@ -48,6 +48,14 @@
                                     </div>
 
                                     <div class="form-group">
+                                    <div>
+                                        <label for="birthdate">Tanggal Lahir</label>
+                                        <input id="birthdate" type="date" name="birthdate" required>
+                                    </div>
+                                    </div>
+
+
+                                    <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             {{ __('Register') }}
                                         </button>

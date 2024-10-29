@@ -220,5 +220,15 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+document.getElementById('birthdate').addEventListener('input', function (event) {
+    const value = event.target.value;
+    const regex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d\d$/;
+    if (!regex.test(value) && value.length > 0) {
+        alert("Format tanggal tidak sesuai. Gunakan dd/mm/yyyy.");
+    }
+});
+</script>
+
 </body>
 </html>

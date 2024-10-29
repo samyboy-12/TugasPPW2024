@@ -21,7 +21,7 @@ Auth::routes();
 
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth','age.check',])->group(function () {
     Route::get('/book', [BookController::class, 'index'])->name('book.index');
     Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
     Route::post('/book', [BookController::class, 'store'])->name('book.store');
@@ -35,7 +35,16 @@ Route::middleware(['auth'])->group(function () {
     })->name('about');
     Route::get('/home', 'HomeController@index')->name('home');
 });
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/book', [BookController::class, 'index'])->name('book.index');
+    Route::get('/book/create', [BookController::class, 'create'])->name('book.create');
+    Route::post('/book', [BookController::class, 'store'])->name('book.store');
+    Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
+    Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
+    Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
 });
+Route::get('/', function () {
+    return view('welcome'); 
+})->name('welcome');
 
