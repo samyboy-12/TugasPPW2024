@@ -30,6 +30,7 @@ Route::middleware(['auth','age.check',])->group(function () {
     Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
+    Route::post('/book/{id}/upload', [BookController::class, 'upload'])->name('book.upload');
     Route::get('/about', function () {
         return view('about');
     })->name('about');
@@ -43,6 +44,7 @@ Route::middleware(['admin'])->group(function () {
     Route::delete('/book/{id}', [BookController::class, 'destroy'])->name('book.destroy');
     Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
+    Route::post('/book/{id}/upload', [BookController::class, 'upload'])->name('book.upload');
 });
 Route::get('/', function () {
     return view('welcome'); 

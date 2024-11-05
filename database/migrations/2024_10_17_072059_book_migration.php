@@ -9,33 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-     public function up(): void
-     {
-        Schema::create( 'books', function (Blueprint $table) {
-        $table->id();
-        $table->string('judul'); 
-        $table->string('books'); 
-        $table->string('penulis'); 
-        $table->integer('harga'); 
-        $table->date('tgl_terbit'); 
-        $table->timestamps();
+    public function up(): void
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul');
+            $table->string('penulis');
+            $table->integer('harga');
+            $table->date('tgl_terbit');
+            $table->string('photo')->nullable(); // Mengganti 'books' dengan 'photo' dan membuatnya nullable
+            $table->timestamps();
         });
-
-        Schema::table('books', function (Blueprint $table) {
-            $table->string('books')->nullable()->change(); // Mengubah kolom menjadi nullable
-        });
-        
     }
-
-     
-    
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('books');
     }
 };

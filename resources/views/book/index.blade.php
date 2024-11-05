@@ -1,6 +1,6 @@
-@extends('layouts.admin') <!-- Change to your admin layout -->
+@extends('layouts.admin')
 
-@section('main-content') <!-- Replacing @content with @main-content for SB Admin layout -->
+@section('main-content')
 <div class="container mt-5">
     <a href="{{ route('book.create') }}" class="btn btn-primary mb-3">Tambah Buku</a>
     <h4 class="mb-4">Daftar Buku</h4>
@@ -12,6 +12,7 @@
                 <th>Penulis</th>
                 <th>Harga</th>
                 <th>Tanggal Terbit</th>
+                <th>Foto Buku</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -22,7 +23,14 @@
                 <td>{{ $book->judul }}</td>
                 <td>{{ $book->penulis }}</td>
                 <td>{{ 'Rp. '.number_format($book->harga, 2, ',', '.') }}</td>
-                <td>{{ $book->tgl_terbit->format('d/m/Y') }}</td>
+                <td>{{ \Carbon\Carbon::parse($book->tgl_terbit)->format('d/m/Y') }}</td>
+                <td>
+                    @if($book->photo)
+                        <img src="{{ asset('storage/'.$book->photo) }}" alt="Foto Buku" style="width: 100px; height: auto;">
+                    @else
+                        Tidak ada foto
+                    @endif
+                </td>
                 <td>
                     <form action="{{ route('book.destroy', $book->id) }}" method="POST" style="display:inline;">
                         @csrf
@@ -31,6 +39,12 @@
                     </form>
                     <form action="{{ route('book.edit', $book->id) }}" method="GET" style="display:inline;">
                         <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+                    </form>
+                    <!-- Form for uploading photo -->
+                    <form action="{{ route('book.upload', $book->id) }}" method="POST" enctype="multipart/form-data" style="display:inline;">
+                        @csrf
+                        <input type="file" name="photo" class="form-control-file mb-1" required>
+                        <button type="submit" class="btn btn-info btn-sm">Upload Foto</button>
                     </form>
                 </td>
             </tr>
