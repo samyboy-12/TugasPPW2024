@@ -11,14 +11,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
     <!-- Fonts -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('lightbox2-dev/dist/css/lightbox.min.css')}}">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('lightbox2-dev/dist/js/lightbox-plus-jquery.min.js')}}"></script>
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
 </head>
@@ -45,6 +46,12 @@
             <a class="nav-link" href="{{ route('home') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Dashboard') }}</span></a>
+        </li>
+
+        <li class="nav-item {{ Nav::isRoute('gallery.index') }}">
+            <a class="nav-link" href="{{ route('gallery.index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Gallery') }}</span></a>
         </li>
 
         <!-- Nav Item - Book -->
@@ -78,6 +85,8 @@
                 <span>{{ __('About') }}</span>
             </a>
         </li>
+
+        
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

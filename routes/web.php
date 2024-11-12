@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
-
+use App\Http\Controllers\GalleryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,13 @@ Route::middleware(['auth','age.check',])->group(function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
     Route::put('/profile', 'ProfileController@update')->name('profile.update');
     Route::post('/book/{id}/upload', [BookController::class, 'upload'])->name('book.upload');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::post('/gallery', [GalleryController::class, 'store'])->name('gallery.store');
+    Route::get('/gallery/create', [GalleryController::class, 'create'])->name('gallery.create');
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
+    Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
+    Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('gallery.update');
+
     Route::get('/about', function () {
         return view('about');
     })->name('about');
@@ -45,6 +52,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/book/{id}/edit', [BookController::class, 'edit'])->name('book.edit');
     Route::put('/book/{id}', [BookController::class, 'update'])->name('book.update');
     Route::post('/book/{id}/upload', [BookController::class, 'upload'])->name('book.upload');
+    
 });
 Route::get('/', function () {
     return view('welcome'); 
