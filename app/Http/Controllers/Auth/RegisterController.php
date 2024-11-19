@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Mail\UserRegistered;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -41,7 +43,12 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'birthdate' => $data['birthdate'],
-            'level' => 'user', 
+            'level' => 'user',
         ]);
+
+        // Kirimkan email ke pengguna
+        Mail::to($user->email)->send(new UserRegistered($user));
+        return $user;
+        return redirect()->route('home')->with('status', 'Pendaftaran berhasil! Cek email Anda.');
     }
 }

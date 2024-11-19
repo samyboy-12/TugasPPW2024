@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\SendEmailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,12 +38,16 @@ Route::middleware(['auth','age.check',])->group(function () {
     Route::delete('/gallery/{id}', [GalleryController::class, 'destroy'])->name('gallery.destroy');
     Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit'])->name('gallery.edit');
     Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('gallery.update');
+    Route::get ('/send-email', [SendEmailController :: class, 'index' ] ) ->name ('kirim-email');
+    Route::post ('/post-email', [SendEmailController ::class, 'store' ] ) ->name ('post-email' ) ;
 
     Route::get('/about', function () {
         return view('about');
     })->name('about');
     Route::get('/home', 'HomeController@index')->name('home');
 });
+
+
 
 Route::middleware(['admin'])->group(function () {
     Route::get('/book', [BookController::class, 'index'])->name('book.index');

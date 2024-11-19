@@ -50,7 +50,6 @@ class BookController extends Controller
             $filenameSimpan = $filename . '_' . time() . '.' . $extension;
             // Upload Image
             $path = $request->file('photo')->storeAs('photos', $filenameSimpan, 'public');
-            $book->photo = $path;
         }
 
         $book = new Book($validatedData);
