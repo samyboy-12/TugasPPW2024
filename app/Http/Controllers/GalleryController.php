@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Http;
 
 class GalleryController extends Controller
 {
@@ -12,12 +13,20 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $data = [
-            'id' => "posts",
-            'menu' => 'Gallery',
-            'galleries' => Post::where('picture', '!=', '')->whereNotNull('picture')->orderBy('created_at', 'desc')->paginate(30)
-        ];
-        
+        $response = Http::get(route('api.gallery'));
+    
+        if ($response->successful()) {
+            $data = [
+                'menu' => 'Gallery',
+                'galleries' => $response->json('data'),
+            ];
+        } else {
+            $data = [
+                'menu' => 'Gallery',
+                'galleries' => [],
+            ];
+        }
+    
         return view('gallery.index')->with($data);
     }
     /**

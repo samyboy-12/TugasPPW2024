@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\InfoController;
+use App\Http\Controllers\GreetController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +45,8 @@ Route::middleware(['auth','age.check',])->group(function () {
     Route::put('/gallery/{id}', [GalleryController::class, 'update'])->name('gallery.update');
     Route::get ('/send-email', [SendEmailController :: class, 'index' ] ) ->name ('kirim-email');
     Route::post ('/post-email', [SendEmailController ::class, 'store' ] ) ->name ('post-email' ) ;
+    Route::get('/info', [InfoController::class, 'index'])->name('info');
+    Route::get('/greet', [GreetController::class,'greet'])->name('greet');
 
     Route::get('/about', function () {
         return view('about');
